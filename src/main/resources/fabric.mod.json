@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "deer-mod-patch",
+	"version": "${version}",
+	"name": "Deer Mod Patch",
+	"description": "A Polymer Patch mod for Deer Mod.",
+	"authors": [
+		"Sun_Phoen1x"
+	],
+	"license": "GPL-3.0-or-later",
+	"icon": "assets/deer-mod-patch/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.phoen1x.deermodpatch.impl.DeerModPatch"
+		]
+	},
+	"mixins": [
+		"deer-mod-patch.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.0",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
