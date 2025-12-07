@@ -1,9 +1,9 @@
 package com.phoen1x.deermodpatch.impl.entity.model;
 
 import com.phoen1x.deermodpatch.impl.entity.anim.DeerAnimations;
-import eu.pb4.factorytools.api.virtualentity.emuvanilla.model.*;
 import eu.pb4.factorytools.api.virtualentity.emuvanilla.EntityValueExtraction;
 import eu.pb4.factorytools.api.virtualentity.emuvanilla.animation.Animation;
+import eu.pb4.factorytools.api.virtualentity.emuvanilla.model.*;
 import mei.arisuwu.deermod.entity.deer.DeerEntity;
 import net.minecraft.util.math.MathHelper;
 
@@ -37,7 +37,6 @@ public class DeerModel extends EntityModel<DeerEntity> {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        // Геометрія з DeerEntityModel.java
         ModelPartData neck = modelPartData.addChild("neck", ModelPartBuilder.create(), ModelTransform.origin(0.0F, 9.0F, -11.0F));
         neck.addChild("neck_r1", ModelPartBuilder.create().uv(32, 43).cuboid(-2.0F, -10.0F, -1.5F, 4.0F, 12.0F, 4.0F), ModelTransform.of(0.0F, -2.5F, -0.5F, 0.2356F, 0.0F, 0.0F));
 
@@ -68,13 +67,34 @@ public class DeerModel extends EntityModel<DeerEntity> {
     @Override
     public void setAngles(DeerEntity state) {
         super.setAngles(state);
+        float scale = state.isBaby() ? 0.5F : 1.0F;
+        float neckY = state.isBaby() ? 16.0F : 9.0F;
+        float neckZ = state.isBaby() ? -6.0F : -11.0F;
+        this.neck.setOrigin(0.0F, neckY, neckZ);
+        this.neck.xScale = scale;
+        this.neck.yScale = scale;
+        this.neck.zScale = scale;
+
+        this.body.xScale = scale;
+        this.body.yScale = scale;
+        this.body.zScale = scale;
+
+        this.saddle.xScale = scale;
+        this.saddle.yScale = scale;
+        this.saddle.zScale = scale;
 
         this.saddle.visible = state.hasSaddleEquipped();
 
         this.head.pitch = state.getPitch() * ((float) Math.PI / 180F);
         this.head.yaw = EntityValueExtraction.getRelativeHeadYaw(state) * ((float) Math.PI / 180F);
+
         float limbSwing = state.limbAnimator.getAnimationProgress(1.0F);
         float limbSwingAmount = state.limbAnimator.getSpeed();
+        limbSwingAmount = Math.min(limbSwingAmount, 1.0F);
+
+        if (state.isBaby()) {
+            limbSwing *= 3.0F;
+        }
 
         this.rightHindLeg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.leftHindLeg.pitch = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;

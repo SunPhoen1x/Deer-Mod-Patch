@@ -3,8 +3,16 @@
 	"package": "com.phoen1x.deermodpatch.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ModEntitiesMixin",
-        "ModItemsMixin"
+		"mod.ModEntitiesMixin",
+        "mod.ModItemsMixin",
+
+        "EntityMixin",
+        "LivingEntityMixin",
+        "LivingEntityAccessor",
+        "ServerPlayerEntityMixin",
+        "AbstractHorseEntityAccessor",
+        "PassiveEntityMixin",
+        "DeerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

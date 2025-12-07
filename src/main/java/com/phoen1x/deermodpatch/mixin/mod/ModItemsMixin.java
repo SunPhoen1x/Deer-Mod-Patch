@@ -1,4 +1,4 @@
-package com.phoen1x.deermodpatch.mixin;
+package com.phoen1x.deermodpatch.mixin.mod;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
 import mei.arisuwu.deermod.ModItems;

@@ -1,6 +1,6 @@
-package com.phoen1x.deermodpatch.mixin;
+package com.phoen1x.deermodpatch.mixin.mod;
 
-import com.phoen1x.deermodpatch.impl.entity.model.DeerPolymerEntity;
+import com.phoen1x.deermodpatch.impl.entity.BasePolymerEntity;
 import com.phoen1x.deermodpatch.impl.entity.model.EntityModels; // (!) Додаємо імпорт
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
 import eu.pb4.polymer.core.api.entity.PolymerEntityUtils;
@@ -29,7 +29,7 @@ public abstract class ModEntitiesMixin {
             EntityModels.BY_TYPE.put(registeredEntityType, EntityModels.DEER);
             PolymerEntityUtils.registerOverlay(
                     (EntityType<LivingEntity>) registeredEntityType,
-                    (Function<LivingEntity, PolymerEntity>) DeerPolymerEntity::new
+                    (Function<LivingEntity, PolymerEntity>) BasePolymerEntity::new
             );
         }
     }

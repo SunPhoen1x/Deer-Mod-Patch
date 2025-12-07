@@ -18,22 +18,8 @@ public interface EntityModels {
     Map<EntityType<?>, PolyModelInstance<?>> BY_TYPE = new IdentityHashMap<>();
     PolyModelInstance<DeerModel> DEER = create(DeerModel::new, DeerModel.createLayer(), Identifier.of("deermod", "entity/deer/deer"));
 
-//    private static void initializeModelMap() {
-//        BY_TYPE.put(ModEntities.DEER.get(), DEER);
-//    }
-
-//    static void init() {
-//        initializeModelMap();
-//    }
-
     static <T extends EntityModel<?>> PolyModelInstance<T> create(Function<ModelPart, T> modelCreator, TexturedModelData data, Identifier texture) {
         var instance = PolyModelInstance.create(modelCreator, data, texture);
-        ALL.add(instance);
-        return instance;
-    }
-
-    static <T extends EntityModel<?>> PolyModelInstance<T> withTexture(PolyModelInstance<T> original, Identifier texture) {
-        var instance = original.withTexture(texture);
         ALL.add(instance);
         return instance;
     }

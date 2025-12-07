@@ -21,7 +21,7 @@ public record PolyBaseItem(Item item) implements PolymerItem {
 
     @Override
     public boolean isPolymerBlockInteraction(BlockState state, ServerPlayerEntity player, Hand hand, ItemStack stack, ServerWorld world, BlockHitResult blockHitResult, ActionResult actionResult) {
-        return item instanceof BlockItem;
+        return actionResult.isAccepted();
     }
 
     @Override
